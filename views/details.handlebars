@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-4 details-image text-center">
+		<img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" width="100%">
+		<div class="row">
+			<div class="col-12 text-center">
+				<button type="button" class="btn save-movie" data-id="{{movie.id}}">Save to my movies</button>
+			</div>
+		</div>
+	</div>
+	<div class="col-8">
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item"><h3>{{movie.title}}</h3></li>
+			<li class="list-group-item">{{movie.overview}}</li>
+			<li class="list-group-item"> Genres:
+				{{#each movie.genres}}
+					{{#if @last}}
+						{{this.name}}
+					{{else}}
+						{{this.name}},
+					{{/if}}
+				{{/each}}
+			</li>
+			<li class="list-group-item">Reviews: {{movie.vote_average}}/10</li>
+			<li class="list-group-item">Runtime: {{movie.runtime}}</li>
+			<li class="list-group-item">Release Date: {{movie.release_date}}</li>
+			<li class="list-group-item"><a href="http://www.imdb.com/title/{{movie.imdb_id}}">View on IMDB</a></li>
+		</ul>
+	</div>
+</div>

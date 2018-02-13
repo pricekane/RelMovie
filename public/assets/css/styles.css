@@ -1,0 +1,92 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	background-color: #5fab44;
+  }
+  .wrapper {
+	min-height: 100%;
+	/* Equal to height of footer */
+	/* But also accounting for potential margin-bottom of last child */
+	margin-bottom: -50px;
+  }
+
+  .welcome-header p, .welcome-header h1, .sorry-header p, .sorry-header h1{
+	color: white;
+  }
+
+  .btn-primary {
+	  background-color: #5fab44;
+	  border: none;
+  }
+ 
+  .footer{
+	height: 50px;
+	line-height: 50px;
+	background-color: #404547;
+  }
+
+  .push {
+	height: 50px;
+	line-height: 50px;
+	background-color: #5fab44;
+  }
+
+  .footer p {
+	vertical-align: middle;
+	display: inline-block;  
+	color: white;
+  }
+
+.links-box {
+	position: absolute;
+	bottom: 0;
+	width: 90%;
+}
+
+.card-img-top {
+	cursor: pointer;
+}
+
+.card-block {
+	margin: 10px;
+}
+
+.navbar {
+	min-height: 80px;
+	margin-bottom: 20px;
+	background-color: white;
+}
+
+.navbar-nav > li > a {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	line-height: 80px;
+}
+
+.container-fluid {
+	margin-bottom: 15px;
+}
+
+.form-background {
+	background-color: white;
+}
+
+.custom-input-form {
+	background-color: white;
+	padding: 15px 15px 5px 15px;
+	border: 2px solid #404547;
+    border-radius: 5px;
+}
+
+.save-movie {
+	background-color: white;
+	margin-top: 10px;
+	width: 100%;
+}
+
+@media (max-width: 767px) {
+	.navbar-nav > li > a {
+	line-height: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;}
+}

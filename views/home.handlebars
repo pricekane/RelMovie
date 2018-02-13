@@ -1,0 +1,22 @@
+<div class="row justify-content-center">
+<div class="welcome-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Welcome!</h1>
+      <p class="lead">Thank you for visiting the Relias Movie Database.  Please search for a movie in the below form to find your movie.</p>
+    </div>
+</div>
+<div class="row justify-content-center">
+	<div class="col-6 custom-input-form">
+		<form>
+			<div class="form-group">
+				<label for="movie-search-form">Movie Title</label>
+				<input type="text" class="form-control" id="movie-search-form" placeholder="Harold and Maude">
+			</div>
+			<div class="form-group text-right">
+				<a href='/search/' onclick="this.href='document.getElementById('movie-search-form').value">Submit</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+	<script src="/js/app.js"></script>
+	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
