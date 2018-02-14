@@ -1,4 +1,5 @@
-{{#if movies}} {{#grouped_each 4 movies}}
+{{#if user}} 
+{{#grouped_each 4 user.savedMovie}}
 <div class="card-deck">
 	{{#each this}}
 	<div class="card">
@@ -14,13 +15,16 @@
 	{{/each}}
 </div>
 <br>
-<br> {{/grouped_each}} {{else}}
+<br> {{/grouped_each}}
+{{else}}
 	<div class="row justify-content-center">
 	<div class="sorry-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 		<h1 class="display-4">I'm sorry :(</h1>
+		{{#if user}}
 		<p class="lead">While I'm sure you save the day every once in a while, it doesn't look like you've saved any movies.</p>
+		{{else}}
+		<p class="lead">Saving movies is only available to users who are logged in.  Account registration is open and free!</p>
+		{{/if}}
 		</div>
 	</div>
 {{/if}}
-<br>
-<br>

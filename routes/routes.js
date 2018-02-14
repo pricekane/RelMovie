@@ -25,7 +25,10 @@ module.exports = function (app) {
     }, function(err, response, body) {
             let json = JSON.parse(body);
             console.log(json);
-            res.render("search", {movies: json.results});
+            res.render("search", {
+                user: req.user,
+                movies: json.results
+            });
     });
     });
     
@@ -39,40 +42,53 @@ module.exports = function (app) {
         "method": "GET",
     }, function(err, response, body) {
             let json = JSON.parse(body);
-            res.render("details", {movie: json});
+            res.render("details", {
+                user: req.user,
+                movie: json,
+                movieString: JSON.stringify(json),
+            });
         });
         });
     
 
     app.get("/saved", function(req, res) {
-        // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-        db.Movie.find({})
-        // ..and populate all of the comments associated with it
-        .then(function(response) {
-            console.log(response + "are your movies!");
-            res.render("saved", {moviesDB: response})
-        })
-        .catch(function(err) {
-            // If an error occurred, send it to the client
-            res.json(err);
-        });
-    });
+        if (req.user !== undefined) {
+        db.User.findById(req.user._id, function (err, doc){
+            if (err) throw err;
+            if (! doc) return res.send(401);
+            console.log(doc + "are your movies!");
+            res.render("saved", {
+                user: doc
+            });          
+        });        // ..and populate all of the comments associated with it
+        }
+        else {
+            res.render("saved");
+        }
+    })
+
 
     app.post("/save/", function(req, res) {
-        console.log(req.body.movie);
-        db.Movie.update({id: req.body.id});
-        newMovie.save(function (err) {
-          if (err) return handleError(err);
-        });
-    });
+        var movieObject = JSON.parse(req.body.movie);
+        console.log(req.body.movie, "this is the movie in the route");
+        console.log(req.body.userId, "this is the user id in the route");
+        db.User.findOneAndUpdate({ _id: req.body.userId }, {$push: {savedMovie: movieObject}}, { new: true }, function(err, data) {
+                if(err) {
+                  return res.status(500).json({'error' : 'error in deleting address'});
+                }
+                res.json(data);
+              });
+            });
 
     app.post("/unsave/:id", function(req, res) {
         console.log(req.body);
-        var removeMovie = new db.Movie({id: req.body.id});
-        removeMovie.remove(function (err) {
-          if (err) return handleError(err);
+        db.User.update({ id: req.user }, { $pull: { "savedMovie" : req.id } }, function(err, data) {
+            if(err) {
+              return res.status(500).json({'error' : 'error in deleting address'});
+            }
+            res.json(data);
+          });
         });
-    });
     
     app.get('/register', function(req, res) {
         res.render('register', { });
