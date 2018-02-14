@@ -1,21 +1,18 @@
 {{#if user.savedMovie}} 
 {{#grouped_each 4 user.savedMovie}}
-<div class="card-deck">
+<div class="row justify-content-md-center">
 	{{#each this}}
-	<div class="card">
+	<div class="col-md-3 poster" style="background: white">
 		{{#if poster_path}}
-		<img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="Card image cap" onclick="window.location.href='/details/{{this.id}}';">
+			<img src="https://image.tmdb.org/t/p/w500{{poster_path}}" width="100%" onclick="window.location.href='/details/{{id}}';">
 		{{else}}
-		<img class="card-img-top" src="/assets/images/noimg.jpeg" alt="Card image cap" onclick="window.location.href='/details/{{this.id}}';">
+			<img src="/assets/images/noimg.jpeg" width="100%">
 		{{/if}}
-		<div class="card-block text-center">
-			<p class="card-title">{{this.title}}</p>
+			<button type="button" class="btn-block unsave-movie btn-danger align-bottom to-the-bottom" data-id="{{this.id}}" data-user="{{user.id}}">Remove</button>
 		</div>
-	</div>
 	{{/each}}
 </div>
-<br>
-<br> {{/grouped_each}}
+{{/grouped_each}}
 {{else}}
 	<div class="row justify-content-center">
 	<div class="sorry-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">

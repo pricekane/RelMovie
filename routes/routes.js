@@ -56,7 +56,6 @@ module.exports = function (app) {
         db.User.findById(req.user._id, function (err, doc){
             if (err) throw err;
             if (! doc) return res.send(401);
-            console.log(doc + "are your movies!");
             res.render("saved", {
                 user: doc
             });          
@@ -70,23 +69,21 @@ module.exports = function (app) {
 
     app.post("/save/", function(req, res) {
         var movieObject = JSON.parse(req.body.movie);
-        console.log(req.body.movie, "this is the movie in the route");
-        console.log(req.body.userId, "this is the user id in the route");
         db.User.findOneAndUpdate({ _id: req.body.userId }, {$push: {savedMovie: movieObject}}, { new: true }, function(err, data) {
                 if(err) {
-                  return res.status(500).json({'error' : 'error in deleting address'});
+                  return res.status(500).json({'error' : 'error in adding movie'});
                 }
                 res.json(data);
               });
             });
 
-    app.post("/unsave/:id", function(req, res) {
+    app.post("/unsave/", function(req, res) {
         console.log(req.body);
-        db.User.update({ id: req.user }, { $pull: { "savedMovie" : req.id } }, function(err, data) {
+        db.User.findOneAndRemove({ _id: req.body.userId }, {$pull: {savedMovie: {id: req.body.id} }}, function(err, data) {
             if(err) {
-              return res.status(500).json({'error' : 'error in deleting address'});
+              return res.status(500).json({'error' : 'error in removing movie'});
             }
-            res.json(data);
+            res.redirect("saved");
           });
         });
     
@@ -97,7 +94,7 @@ module.exports = function (app) {
     app.post('/register', function(req, res) {
         db.User.register(new db.User({ username : req.body.username }), req.body.password, function(err, user) {
             if (err) {
-                return res.render('register', { error : "error" });
+                return res.render('register', { error : "user" });
             }
     
             passport.authenticate('local')(req, res, function () {
@@ -110,9 +107,27 @@ module.exports = function (app) {
         res.render('login', { user : req.user });
     });
     
-    app.post('/login', passport.authenticate('local'), function(req, res) {
-        res.redirect('/');
-    });
+    app.post('/login', function(req, res, next) {
+        passport.authenticate('local', function(err, user, info) {
+          if (err) {
+            return next(err); // will generate a 500 error
+          }
+          // Generate a JSON response reflecting authentication status
+          if (! user) {
+            return res.render('login', {error: "error"});;
+          }
+          req.login(user, function(err){
+            if(err){
+              return next(err);
+            }
+            return res.redirect('/');;        
+          });
+        })(req, res, next);
+      });
+
+    // app.post('/login', passport.authenticate('local'), function(req, res) {
+    //     res.redirect('/');
+    // });
     
     app.get('/logout', function(req, res) {
         req.logout();

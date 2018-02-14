@@ -1,7 +1,12 @@
 <div class="row justify-content-center">
 <div class="welcome-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+	{{#if error}}
+	  <h1 class="display-4">Oops :(</h1>
+      <p class="lead">Unfortunately there was a problem with signing you in.  Please try again.</p>
+	{{else}}
       <h1 class="display-4">Please Log In!</h1>
       <p class="lead">It doesn't appear that you're logged in.  Please log in below.</p>
+	{{/if}}
     </div>
 </div>
 <div class="row justify-content-center">

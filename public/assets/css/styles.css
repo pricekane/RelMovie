@@ -14,6 +14,12 @@ html, body {
 	color: white;
   }
 
+  .details-pic {
+	background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+  }
+
   .btn-primary {
 	  background-color: #5fab44;
 	  border: none;
@@ -43,8 +49,15 @@ html, body {
 	width: 90%;
 }
 
-.card-img-top {
+.card {
+	max-width: 22.5%;
 	cursor: pointer;
+}
+
+.details-text {
+	background-color: white;
+	border: 2px solid #404547;
+    border-radius: 5px;
 }
 
 .card-block {
@@ -67,6 +80,7 @@ html, body {
 	margin-bottom: 15px;
 }
 
+
 .form-background {
 	background-color: white;
 }
@@ -84,9 +98,33 @@ html, body {
 	width: 100%;
 }
 
-@media (max-width: 767px) {
+#navbarNav {
+	width: 100%;
+}
+
+.poster {
+	max-width: 20%;
+	min-height: 1px;
+	margin: 10px 10px 10px 10px;
+	padding: 0px 0px 0px 0px;
+	background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+	border-radius: .25rem;
+	position: relative;
+	cursor: pointer;
+}
+
+.to-the-bottom {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+
+
+
+/* @media (max-width: 767px) {
 	.navbar-nav > li > a {
 	line-height: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;}
-}
+} */

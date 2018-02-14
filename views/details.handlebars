@@ -1,13 +1,15 @@
 <div class="row justify-content-center">
 	<div class="col-3 details-image text-center">
-		<img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" width="100%">
+		<img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="details-pic" width="100%">
 		<div class="row">
+			{{#if user}}
 			<div class="col-12 text-center">
 				<button type="button" class="btn save-movie" data-id="{{movieString}}" data-user="{{user.id}}">Save to my movies</button>
 			</div>
+			{{/if}}
 		</div>
 	</div>
-	<div class="col-7">
+	<div class="col-7 details-text">
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item"><h3>{{movie.title}}</h3></li>
 			<li class="list-group-item">{{movie.overview}}</li>

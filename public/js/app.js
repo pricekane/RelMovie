@@ -16,13 +16,14 @@ $(".save-movie").on("click", function(event) {
 $(".unsave-movie").on("click", function(event) {
 	event.preventDefault();
 	var thisId = $(this).attr("data-id");
-  
+	var thisUserId = $(this).attr("data-user");
 	// Run a POST request to unsave the movie, using what's entered in the inputs
 	$.ajax({
 	  method: "POST",
 	  url: "/unsave/",
 	  data: {
-		id: thisId
+		id: thisId,
+		userId: thisUserId
 	  }
 	}).done(window.location.reload(true));
 	
