@@ -3,9 +3,11 @@
 		<img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="details-pic" width="100%">
 		<div class="row">
 			{{#if user}}
+				{{#if notFound}}
 			<div class="col-12 text-center">
 				<button type="button" class="btn save-movie" data-id="{{movieString}}" data-user="{{user.id}}">Save to my movies</button>
 			</div>
+				{{/if}}
 			{{/if}}
 		</div>
 	</div>

@@ -33,6 +33,7 @@ module.exports = function (app) {
     
     app.get('/details/:id', function (req, res) {
     
+    const theUser = req.user;
     const movieId = req.params.id;
     const api_key = "a9ece44e8732dfb9e826500dbed166b2"
     
@@ -41,10 +42,22 @@ module.exports = function (app) {
         "method": "GET",
     }, function(err, response, body) {
             let json = JSON.parse(body);
+            console.log(json);
+            console.log(theUser);
+            var notFound = true;
+            if (theUser !== undefined) {
+                for(var i = 0; i < theUser.savedMovie.length; i++) {
+                    if (req.user.savedMovie[i].id === json.id) {
+                        notFound = false;
+                        break;
+                    }
+                }
+            }            
             res.render("details", {
                 user: req.user,
                 movie: json,
                 movieString: JSON.stringify(json),
+                notFound: notFound,
             });
         });
         });
@@ -68,7 +81,7 @@ module.exports = function (app) {
 
     app.post("/save/", function(req, res) {
         var movieObject = JSON.parse(req.body.movie);
-        db.User.findOneAndUpdate({ _id: req.body.userId }, {$push: {savedMovie: movieObject}}, { new: true }, function(err, data) {
+        db.User.findOneAndUpdate({ _id: req.body.userId }, {$addToSet: {savedMovie: movieObject}}, { new: true }, function(err, data) {
                 if(err) {
                   return res.status(500).json({'error' : 'error in adding movie'});
                 }
