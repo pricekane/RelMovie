@@ -11,7 +11,7 @@ handleError = (err) => {
 module.exports = function (app) {
 
     app.get('/', function (req, res) {
-     res.render("home");
+     res.render("home", {user: req.user});
     });
 
     app.get('/search/', function (req, res) {
@@ -73,19 +73,35 @@ module.exports = function (app) {
           if (err) return handleError(err);
         });
     });
-
-    app.get("/login", function(req, res){
-        res.render("login");
-    });
-
-    app.post("/login",
-        passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login',
-            failureFlash: true })
-);
-
     
+    app.get('/register', function(req, res) {
+        res.render('register', { });
+    });
+    
+    app.post('/register', function(req, res) {
+        db.User.register(new db.User({ username : req.body.username }), req.body.password, function(err, user) {
+            if (err) {
+                return res.render('login', { user : user });
+            }
+    
+            passport.authenticate('local')(req, res, function () {
+                res.redirect('/');
+            });
+        });
+    });
+    
+    app.get('/login', function(req, res) {
+        res.render('login', { user : req.user });
+    });
+    
+    app.post('/login', passport.authenticate('local'), function(req, res) {
+        res.redirect('/');
+    });
+    
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 
     // app.get("*", function(req, res) {
     //     res.render("home");
