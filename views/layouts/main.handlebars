@@ -25,6 +25,7 @@
 		</a>
 		<div class="d-flex justify-content-end" width="100%" id="navbarNav">
 			<ul class="navbar-nav list-inline">
+			{{!-- Once a user is logged in, we want to change the HTML that is rendered to indicate this --}}
 			{{#if user}}
 				<li class="nav-item list-inline-item">
 					<a class="nav-link" href="#">Welcome, {{user.username}}!</a>

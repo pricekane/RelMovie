@@ -1,3 +1,5 @@
+
+/* Settings here in wrapper, html, bodym and container to force the footer to remain at the bottom of the page */
 html, body {
 	height: 100%;
 	margin: 0;
@@ -8,6 +10,27 @@ html, body {
 	/* Equal to height of footer */
 	/* But also accounting for potential margin-bottom of last child */
 	margin-bottom: -50px;
+  }
+  .container-fluid {
+	margin-bottom: 15px;
+}
+
+.push {
+	height: 50px;
+	line-height: 50px;
+	background-color: #5fab44;
+  }
+
+  .footer{
+	height: 50px;
+	line-height: 50px;
+	background-color: #404547;
+  }
+
+  .footer p {
+	vertical-align: middle;
+	display: inline-block;  
+	color: white;
   }
 
   .welcome-header p, .welcome-header h1, .sorry-header p, .sorry-header h1{
@@ -25,24 +48,6 @@ html, body {
 	  border: none;
   }
  
-  .footer{
-	height: 50px;
-	line-height: 50px;
-	background-color: #404547;
-  }
-
-  .push {
-	height: 50px;
-	line-height: 50px;
-	background-color: #5fab44;
-  }
-
-  .footer p {
-	vertical-align: middle;
-	display: inline-block;  
-	color: white;
-  }
-
 .links-box {
 	position: absolute;
 	bottom: 0;
@@ -54,16 +59,17 @@ html, body {
 	cursor: pointer;
 }
 
+.card-block {
+	margin: 10px;
+}
+
 .details-text {
 	background-color: white;
 	border: 2px solid #404547;
     border-radius: 5px;
 }
 
-.card-block {
-	margin: 10px;
-}
-
+/* Put Navbar stuff here */
 .navbar {
 	min-height: 80px;
 	margin-bottom: 20px;
@@ -76,11 +82,11 @@ html, body {
 	line-height: 80px;
 }
 
-.container-fluid {
-	margin-bottom: 15px;
+#navbarNav {
+	width: 100%;
 }
 
-
+/* Put Form stuff here */
 .form-background {
 	background-color: white;
 }
@@ -92,6 +98,7 @@ html, body {
     border-radius: 5px;
 }
 
+/* Save and unsave button CSS.  These share locations and switching one will have detrimental effects on the other unless both are changed. */
 .save-movie {
 	background-color: white;
 	margin-top: 10px;
@@ -103,10 +110,7 @@ html, body {
 	width: 100%;
 }
 
-#navbarNav {
-	width: 100%;
-}
-
+/* Styles the poster divs for the saved movies page and forces the remove button to the botton of the div */
 .poster {
 	max-width: 20%;
 	min-height: 1px;

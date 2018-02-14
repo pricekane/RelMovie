@@ -1,11 +1,13 @@
 <div class="row justify-content-center">
 	<div class="col-3 details-image text-center">
+		{{!-- If a movie has a poster, pull it from the movie object.  Otherwise, use our local placeholder image. --}}
 		{{#if movie.poster_path}}
 		<img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="details-pic" width="100%">
 		{{else}}
 		<img src="/assets/images/noimg.jpeg" class="details-pic" width="100%">
 		{{/if}}
 		<div class="row">
+			{{!-- If we have a user and that use does not have the movie saved that we pull in the request, display the save button.  Otherwise, display the unsave button. --}}
 			{{#if user}}
 				{{#if notFound}}
 					<div class="col-12 text-center">

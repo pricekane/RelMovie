@@ -1,5 +1,6 @@
 <div class="row justify-content-center">
 <div class="welcome-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+	{{!-- If there was an error on registration, we passed an error object that we can use to modify the displayed HTML.  Currently only checks for duplicate usernames. --}}
 	{{#if error}}
 	  <h1 class="display-4">Oops.</h1>
       <p class="lead">For some reason that didn't work.  Perhaps your username is taken?  Please try again.</p>

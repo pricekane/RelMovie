@@ -1,6 +1,8 @@
+{{!-- If we have movies, use a custom handlebars helper to display the saved movies. --}}
 {{#if user.savedMovie}} 
 {{#grouped_each 4 user.savedMovie}}
 <div class="row justify-content-md-center">
+	{{!-- Poster check and replacement --}}
 	{{#each this}}
 	<div class="col-md-3 poster" style="background: white">
 		{{#if poster_path}}
@@ -13,12 +15,15 @@
 	{{/each}}
 </div>
 {{/grouped_each}}
+{{!-- Show the below if we... --}}
 {{else}}
 	<div class="row justify-content-center">
 	<div class="sorry-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 		<h1 class="display-4">I'm sorry :(</h1>
+		{{!-- ...don't have any saved movies... --}}
 		{{#if user}}
 		<p class="lead">While I'm sure you save the day every once in a while, it doesn't look like you've saved any movies.</p>
+		{{!-- ...or are not logged in. --}}
 		{{else}}
 		<p class="lead">Saving movies is only available to users who are logged in.  Account registration is open and free!</p>
 		{{/if}}
