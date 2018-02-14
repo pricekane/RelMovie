@@ -8,7 +8,7 @@
 		{{else}}
 			<img src="/assets/images/noimg.jpeg" width="100%">
 		{{/if}}
-			<button type="button" class="btn-block unsave-movie btn-danger align-bottom to-the-bottom" data-id="{{this.id}}" data-user="{{user.id}}">Remove</button>
+			<button type="button" class="btn-block unsave-movie btn-danger align-bottom to-the-bottom" data-id="{{this.id}}" data-user="{{../../user._id}}">Remove</button>
 		</div>
 	{{/each}}
 </div>
@@ -25,3 +25,6 @@
 		</div>
 	</div>
 {{/if}}
+
+<script src="/js/app.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>

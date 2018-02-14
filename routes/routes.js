@@ -24,7 +24,6 @@ module.exports = function (app) {
 		"method": "GET",
     }, function(err, response, body) {
             let json = JSON.parse(body);
-            console.log(json);
             res.render("search", {
                 user: req.user,
                 movies: json.results
@@ -78,14 +77,15 @@ module.exports = function (app) {
             });
 
     app.post("/unsave/", function(req, res) {
+        var movieInt = parseInt(req.body.movieId);
         console.log(req.body);
-        db.User.findOneAndRemove({ _id: req.body.userId }, {$pull: {savedMovie: {id: req.body.id} }}, function(err, data) {
+        db.User.findOneAndUpdate({_id: req.body.userId}, {$pull: {savedMovie: {id: movieInt}}}, function(err, data) {
             if(err) {
-              return res.status(500).json({'error' : 'error in removing movie'});
-            }
-            res.redirect("saved");
+                return res.status(500).json({'error' : 'error in removing movie'});
+              }
+              console.log((data));
+            });
           });
-        });
     
     app.get('/register', function(req, res) {
         res.render('register', { });
