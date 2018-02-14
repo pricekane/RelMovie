@@ -98,6 +98,11 @@ html, body {
 	width: 100%;
 }
 
+.unsave-movie-details {
+	margin-top: 10px;
+	width: 100%;
+}
+
 #navbarNav {
 	width: 100%;
 }
