@@ -1,7 +1,12 @@
 <div class="row justify-content-center">
 <div class="welcome-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4">Better late that never!</h1>
+	{{#if error}}
+	  <h1 class="display-4">Oops.</h1>
+      <p class="lead">For some reason that didn't work.  Perhaps your username is taken?  Please try again.</p>
+	{{else}}
+	  <h1 class="display-4">Better late that never!</h1>
       <p class="lead">Thanks for joining us!  Please enter your username and password below to get started.</p>
+	{{/if}}
     </div>
 </div>
 <div class="row justify-content-center">

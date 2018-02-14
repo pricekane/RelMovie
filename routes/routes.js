@@ -97,7 +97,7 @@ module.exports = function (app) {
     app.post('/register', function(req, res) {
         db.User.register(new db.User({ username : req.body.username }), req.body.password, function(err, user) {
             if (err) {
-                return res.render('login', { user : user });
+                return res.render('register', { error : "error" });
             }
     
             passport.authenticate('local')(req, res, function () {
