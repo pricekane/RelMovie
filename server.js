@@ -3,6 +3,9 @@ var exphbs  = require('express-handlebars');
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
+var session = require("express-session");
+
 
 // Our scraping tools
 // Request is a promised-based http library, similar to jQuery's Ajax method
@@ -24,10 +27,23 @@ app.use(logger("dev"));
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: false }));
 // Use express.static to serve the public folder as a static directory
+
 app.use(express.static("public"));
+app.use(session({ 
+  secret: "cats",
+  resave: false,
+  saveUninitialized: true
+ }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+var User = require('./models/user');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/ReliasMovies";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Movies";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB

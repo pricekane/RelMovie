@@ -1,3 +1,3 @@
 module.exports = {
-	Article: require("./Movie"),
+	Movie: require("./Movie"),
   };

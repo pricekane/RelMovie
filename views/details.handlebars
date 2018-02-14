@@ -1,13 +1,13 @@
-<div class="row">
-	<div class="col-4 details-image text-center">
+<div class="row justify-content-center">
+	<div class="col-3 details-image text-center">
 		<img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" width="100%">
 		<div class="row">
 			<div class="col-12 text-center">
-				<button type="button" class="btn save-movie" data-id="{{movie.id}}">Save to my movies</button>
+				<button type="button" class="btn save-movie" data-id="{{movie}}">Save to my movies</button>
 			</div>
 		</div>
 	</div>
-	<div class="col-8">
+	<div class="col-7">
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item"><h3>{{movie.title}}</h3></li>
 			<li class="list-group-item">{{movie.overview}}</li>
@@ -27,3 +27,6 @@
 		</ul>
 	</div>
 </div>
+
+	<script src="/js/app.js"></script>
+	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>

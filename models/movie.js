@@ -6,39 +6,14 @@ var Schema = mongoose.Schema;
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
 var MovieSchema = new Schema({
-  poster: {
-    type: String,
-  },
-  title: {
-	type: String,
-    required: true 
-  },
-  overview: {
-	type: String,
-  },
-  genres: {
-    type: Array,
-  },
-  reviews: {
-    type: Number,
-  },
-  runtime: {
-    type: Number,
-  },
-  release_date: {
-    type: String,
-  },
-  imdb_id: {
-    type: String
-  },
-  saved: {
-	type: Boolean,
-	default: 0
-  },
-  imdb_id: {
-    type: Number,
-    unique: true
-  }
+ movies: { 
+  type: Array,
+  default: [],
+},
+user: {
+  type: String,
+  required: true,
+}
 });
 
 // This creates our model from the above schema, using mongoose's model method

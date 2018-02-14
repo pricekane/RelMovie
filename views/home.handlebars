@@ -6,13 +6,13 @@
 </div>
 <div class="row justify-content-center">
 	<div class="col-6 custom-input-form">
-		<form>
+		<form action="/search/" method="get">
 			<div class="form-group">
 				<label for="movie-search-form">Movie Title</label>
-				<input type="text" class="form-control" id="movie-search-form" placeholder="Harold and Maude">
+				<input type="text" class="form-control" id="movie-search-form" name="id" placeholder="Harold and Maude">
 			</div>
 			<div class="form-group text-right">
-				<a href='/search/' onclick="this.href='document.getElementById('movie-search-form').value">Submit</a>
+				<input type="submit" value="Search"/>
 			</div>
 		</form>
 	</div>
