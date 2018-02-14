@@ -7,6 +7,8 @@ var mongoose = require("mongoose");
 var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 var path = require("path");
 var request = require('request');
+var MongoClient = require('mongodb').MongoClient;
+
 
 //Get all of our models so we can call them later under db.
 var db = require("./models");
